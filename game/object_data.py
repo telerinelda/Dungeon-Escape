@@ -40,9 +40,32 @@ def add_object_data(gs):
     gs.multiword.append([["BOWL","OF","GRUEL"], "BOWL"])
     gs.multiword.append([["BOWL","OF","FOOD"], "BOWL"])
 
+    rat = Thing("RAT")
+    rat.location = "NOWHERE"
+    rat.can_pick_up = False
+    rat.look_texts = {"default":"The rat is large and looks well-fed. You shudder to think what his diet consists of, down here. He looks at you with keen interest. He seems disappointed that you are awake. He will not approach the bowl of gruel while he senses you are conscious."}
+    rat.room_look_texts{"default":"There is a rat."}
+    rat.pick_up_texts = {"default":"The rat stays well out of your reach."}
+    rat.use_texts = {"default":"You can't think of a use for this rat, and you doubt he'd agree to be picked up."}
+    #rat.drop_texts
+    rat.go_to_texts = {"default":"The ropes prevent your getting any closer to the rat."}
+    gs.object_dictionary[rat.name] = rat
+    gs.multiword.append([["RODENT"], "RAT"])
 
-    #rat
-    #cot
+    cot = Thing("COT")
+    cot.location = "CELL"
+    cot.can_pick_up = False
+    cot.look_texts = {"default":"You are lying on a disgusting old bed.  Black spots of mold dot the ancient fabric.  Who knows how long it has been in this dungeon."}
+    cot.room_look_texts = {"default":"There is a bed."}
+    cot.pick_up_texts = {"default":"The cot is too large to bring with you."}
+    cot.use_texts = {"default":"You are already using the cot."}
+    #cot.drop_texts
+    cot.go_to_texts = {"default":"You already lie upon the cot."}
+    gs.object_dictionary[cot.name] = cot
+    gs.multiword.append([["BED"], "COT"])
+    cot.add_sublocation(preposition="UNDER",text="Under the cot",hidden=True)
+    cot.add_sublocation(preposition="ON",text="On the cot",hidden=False)
+
     #bone
     #floor
     #ceiling
