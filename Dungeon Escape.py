@@ -4,6 +4,7 @@ from game import gameState, add_object_data
 
 gs = gameState() #load the initial values for a new game.
 gs = add_object_data(gs)
+gs.set_progress("default")
 
 #--------------------------------------------------------------------------------
 #
@@ -53,17 +54,17 @@ def game_func(command_input):
                                 output_type = "unsuccessful"
                             else:
                                 #standard output for looking at an object.
-                                gs.console_output += gs.object_dictionary[gs.command_list[0]].look_text["default"]
+                                gs.console_output += gs.object_dictionary[gs.command_list[0]].look_text
                     else:
                         # we're looking at a location
-                        gs.console_output += gs.object_dictionary[gs.command_list[0]].look_text["default"]
+                        gs.console_output += gs.object_dictionary[gs.command_list[0]].look_text
                         look_subs = []
                         gs.console_output += "\n"
                         for obj in gs.object_dictionary:
                             if gs.object_dictionary[obj].location == gs.player_location and gs.object_dictionary[obj].sublocation == []:
                                 # this excludes the inventory and objects in sublocations.
                                 gs.console_output += "\n"
-                                gs.console_output += gs.object_dictionary[obj].room_look_text["default"]
+                                gs.console_output += gs.object_dictionary[obj].room_look_text
                             #now we're going to build a collection of the sublocations that need to be mentioned.
                             if gs.object_dictionary[obj].location == gs.player_location and gs.object_dictionary[obj].sublocation != [] and not gs.object_dictionary[obj].is_hidden(gs):
                                 if gs.object_dictionary[obj].sublocation not in look_subs:
@@ -78,7 +79,7 @@ def game_func(command_input):
                             for obj in gs.object_dictionary:
                                 if gs.object_dictionary[obj].sublocation == [sub_owner,sub_prep]:
                                     gs.console_output += "\n"
-                                    gs.console_output += gs.object_dictionary[obj].room_look_text["default"]
+                                    gs.console_output += gs.object_dictionary[obj].room_look_text
 
                 elif len(gs.command_list) and gs.command_list[0] == "INVENTORY":
                     gs.console_output += "Here's a list of the things in your inventory:\n"
@@ -129,7 +130,7 @@ def game_func(command_input):
                                 if gs.object_dictionary[obj].sublocation == [sub_owner,sub_prep]:
                                     find_count += 1
                                     gs.console_output += "\n"
-                                    gs.console_output += gs.object_dictionary[obj].room_look_text["default"]
+                                    gs.console_output += gs.object_dictionary[obj].room_look_text
                             if find_count == 0:
                                 gs.console_output += "\nThere doesn't seem to be anything there."
                         else:
@@ -157,7 +158,7 @@ def game_func(command_input):
                         else:
                             output_type = "unsuccessful"
                         # either way there should be something here:
-                        gs.console_output += gs.object_dictionary[gs.command_list[0]].pick_up_text["default"]
+                        gs.console_output += gs.object_dictionary[gs.command_list[0]].pick_up_text
                     else:
                         #tried to pick up something in the inventory.
                         gs.console_output += "You already have that."
@@ -174,7 +175,7 @@ def game_func(command_input):
                 if gs.find_obj():
                     if gs.object_dictionary[gs.command_list[0]].location == "INVENTORY":
                         gs.object_dictionary[gs.command_list[0]].location = gs.player_location
-                        gs.console_output += gs.object_dictionary[gs.command_list[0]].drop_text["default"]
+                        gs.console_output += gs.object_dictionary[gs.command_list[0]].drop_text
                     else:
                         # tried to drop something not in inventory
                         gs.console_output += "That object is not in your inventory so you can't put it down."
@@ -226,7 +227,7 @@ def game_func(command_input):
                 if gs.find_obj():  # this only searches the current location and the inventory
                     if not gs.object_dictionary[gs.command_list[0]].is_location:
                        # user said go to an object rather than a location
-                       gs.console_output += gs.object_dictionary[gs.command_list[0]].go_to_text["default"]
+                       gs.console_output += gs.object_dictionary[gs.command_list[0]].go_to_text
                     else:
                         # since location matches, you tried to go to where you are!
                         gs.console_output += "You are already there."
@@ -238,7 +239,7 @@ def game_func(command_input):
                             # put player in new location
                             gs.player_location = gs.command_list[0]
                             output_type = "success"
-                            gs.console_output += gs.object_dictionary[gs.command_list[0]].go_to_text["default"]
+                            gs.console_output += gs.object_dictionary[gs.command_list[0]].go_to_text
                             # switch locations on pathway objects with location2 = new location
                             for pathway in gs.pathways_dictionary:
                                 if gs.pathways_dictionary[pathway].location2 == gs.player_location:
@@ -269,15 +270,9 @@ def game_func(command_input):
                                     if object2 in gs.object_dictionary[object1].use_text:
                                         gs.console_output += gs.object_dictionary[object1].use_text[object2]
                                         output_type = "success"
-                                        #This is a place where it's likely that progress points are established.
-                                        #Here's an example:
-                                        if object1 == "HAMMER" and object2 == "ROCK":
-                                            gs.progress.add("hit rock")
-                                            gs.object_dictionary["ROCK"].location = "NOWHERE"
-                                            output_type = "zelda"
                                     else:
                                         #no designated use text for the target
-                                        gs.console_output += gs.object_dictionary[object1].use_text["default"]
+                                        gs.console_output += gs.object_dictionary[object1].use_text
                                 else:
                                     gs.console_output += "I don't recognize the target of that action."
                                     output_type = "unsuccessful"
@@ -294,7 +289,7 @@ def game_func(command_input):
                             gs.command_list = ["GO", "TO", gs.pathways_dictionary[object1].location2]
                             loop_again = True
                         else:
-                            gs.console_output += gs.object_dictionary[object1].use_text["default"]
+                            gs.console_output += gs.object_dictionary[object1].use_text
                 else:
                     gs.console_output += "I don't recognize what object you're trying to use."
                     output_type = "unsuccessful"
@@ -348,6 +343,7 @@ def game_func(command_input):
             elif gs.strip_off(["RESTART","GAME"]):
                 gs = gameState()  # load the initial values for a new game.
                 gs = add_object_data(gs)
+                gs.set_progress("default")
                 gs.console_output = "Restarting Game....\n\n"
                 gs.console_output += gs.game_opening_text
             elif gs.strip_off(["RESTART"]):
@@ -380,8 +376,8 @@ def game_func(command_input):
 
         if gs.command_counter in gs.scheduled_events:
             #custom code for events here.
-            if gs.scheduled_events[gs.command_counter] == "RUMBLE":
-                gs.console_output += "\n\nA distant rumble threatens..."
+            if gs.scheduled_events[gs.command_counter] == "xx":
+                gs.console_output += "\n\nxx"
             del gs.scheduled_events[gs.command_counter] #always remove them after they are executed.
 
     #some debugging stuff

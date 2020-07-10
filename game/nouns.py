@@ -11,12 +11,18 @@ class Thing:
 
         # a thing needs response texts for when it is addressed by a command.  This is a dictionary where there
         # is a "default" text and other texts can be stored for use according the progress indicator.
-        self.look_text = {"default": "Default Look Text."}
-        self.room_look_text = {"default": "Default object in room text."}
-        self.pick_up_text = {"default": "default pick up text."}
-        self.use_text = {"default": "default use text."}
-        self.dropa_text = {"default": "default drop text."}
-        self.go_to_text = {"default": "default go to"}
+        self.look_texts = {"default": "Default Look Text."}
+        self.look_text = ""
+        self.room_look_texts = {"default": "Default object in room text."}
+        self.room_look_text = ""
+        self.pick_up_texts = {"default": "default pick up text."}
+        self.pick_up_text = ""
+        self.use_texts = {"default": "default use text."}
+        self.use_text = ""
+        self.drop_texts = {"default": "default drop text."}
+        self.drop_text = ""
+        self.go_to_texts = {"default": "default go to"}
+        self.go_to_text = ""
 
         #other objects may be able to be located in, on, or under this object.  So we can set up a sublocation: (sublocation programming is incomplete)
         #self.num_sublocations = 0 #should always equal len of the two below strings
@@ -61,7 +67,7 @@ class Place(Thing):
         super().__init__(obj_name)
         self.location = self.name
         self.is_location = True
-        self.room_look_text = {"default":""}
+        self.room_look_texts = {"default":""}
 
 # here's a subclass that is for pathways connecting rooms: doorways, hallways that don't need to be locations.
 class Pathway(Thing):
@@ -69,7 +75,7 @@ class Pathway(Thing):
         super().__init__(obj_name)
         self.location2 = "NOWHERE" #this variable will always be the room the player is NOT in (they swap when he moves)
         self.pathway_open = True #can you pass through?
-        self.look_thru_text = dict() #If the player tries to peer through the pathway to the next room or location.
+        self.look_thru_texts = dict() #If the player tries to peer through the pathway to the next room or location.
 
     def switch(self):
         #this is a method for reversing the locations when you enter the room.  location2 is always the "other" location.

@@ -2,13 +2,13 @@
 
 class gameState:
     def __init__(self):
-        self.game_name = "game name here"
-        self.game_opening_text = "The game has begun!  You are in a room."
+        self.game_name = "Dungeon Escape"
+        self.game_opening_text = "You come to consciousness ..."
         self.sound_toggle = False
         self.progress = set()
         self.object_dictionary = dict()
         self.pathways_dictionary = dict()
-        self.player_location = "ROOM 2" #starting point
+        self.player_location = "CELL" #starting point
         self.help_text = "HELP:\n\nThis is a text-based game. You can play by entering commands in the command line.  Common " \
             "commands are phrases like 'look at', 'pick up', or 'use'. Most commands need an object. Try typing 'Look" \
             " at room'.  \n\n'mute' or 'unmute' will turn the game sounds on or off."
@@ -21,12 +21,12 @@ class gameState:
         self.scheduled_events = dict()
         self.wait_text = "You wait silently.  Time passes."
         #here's two example events
-        self.scheduled_events[5] = "RUMBLE"
-        self.scheduled_events[10] = "RUMBLE"
+        #self.scheduled_events[5] = "RUMBLE"
+        #self.scheduled_events[10] = "RUMBLE"
 
         #populate the multiword dictionary with some generic things
-        self.multiword.append([["DOOR", "WAY"],"DOOR"])
         self.multiword.append([["DOORWAY"],"DOOR"])
+
 
 
     # this is a function that returns a boolean value if a certain object is present
@@ -82,3 +82,20 @@ class gameState:
         for repl in self.multiword:
             comlist = self.subseq_replace(comlist,repl[0],repl[1])
         return comlist
+
+    def set_progress(self, progress_text):
+        if progress_text not in self.progress:
+            self.progress.add(progress_text)
+            for obj in self.object_dictionary:
+                if progress_text in self.object_dictionary[obj].look_texts:
+                    self.object_dictionary[obj].look_text = self.object_dictionary[obj].look_texts[progress_text]
+                if progress_text in self.object_dictionary[obj].room_look_texts:
+                    self.object_dictionary[obj].room_look_text = self.object_dictionary[obj].room_look_texts[progress_text]
+                if progress_text in self.object_dictionary[obj].pick_up_texts:
+                    self.object_dictionary[obj].pick_up_text = self.object_dictionary[obj].pick_up_texts[progress_text]
+                if progress_text in self.object_dictionary[obj].use_texts:
+                    self.object_dictionary[obj].use_text = self.object_dictionary[obj].use_texts[progress_text]
+                if progress_text in self.object_dictionary[obj].drop_texts:
+                    self.object_dictionary[obj].drop_text = self.object_dictionary[obj].drop_texts[progress_text]
+                if progress_text in self.object_dictionary[obj].go_to_texts:
+                    self.object_dictionary[obj].go_to_text = self.object_dictionary[obj].go_to_texts[progress_text]
