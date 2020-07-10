@@ -11,8 +11,44 @@ def add_object_data(gs):
     gs.object_dictionary[cell.name] = cell
     gs.multiword.append([["JAIL"],"CELL"])
 
+    rope = Thing("ROPE")
+    rope.location = "CELL"
+    rope.can_pick_up = False
+    rope.look_texts = {"default": "The rope is thick and strong.  Your wrists ache from the tight knots."}
+    rope.room_look_texts = {"default": ""}
+    rope.pick_up_texts = {"default": "At the moment the ropes have you."}
+    rope.use_texts = {"default": "You strain against the ropes but you can't seem to achieve anything."}
+    rope.drop_texts = {"default": ""}
+    rope.go_to_texts = {"default": "You can't get any closer to the rope than you are now."}
+    gs.object_dictionary[rope.name] = rope
+    gs.multiword.append([["ROPES"],"ROPE"])
+    gs.multiword.append([["BONDS"],"ROPE"])
+    gs.multiword.append([["CORD"],"ROPE"])
+    gs.multiword.append([["CORDS"],"ROPE"])
 
-    #sample doorway:
+    bowl = Thing("BOWL")
+    bowl.location = "CELL"
+    bowl.can_pick_up = True
+    bowl.look_texts = {"default":"An ugly wooden bowl holds a nasty looking gruel.  But you are hungry.  You feel you must eat it to keep up your strength."}
+    bowl.room_look_texts = {"default":"There is a bowl of gruel."}
+    bowl.pick_up_texts = {"default":"You pick up the bowl of gruel carefully, so as not to waste the precious food.  It's smell drives you mad with hunger."}
+    bowl.use_texts = {"default":"You slurp down the gruel hungrily.  It is soon gone.  But as you sigh contentedly you feel some of your strength returning. You are not so hungry anymore."}
+    bowl.drop_texts = {"default":"Summoning all your willpower, you place the bowl of gruel carefully on the floor. Perhaps you will eat it later. But not yet.  Surely you aren't so far gone as that yet."}
+    bowl.go_to_texts = {"default":"You can't move very far, but you scoot closer to the food."}
+    gs.object_dictionary[bowl.name] = bowl
+    gs.multiword.append([["GRUEL"], "BOWL"])
+    gs.multiword.append([["BOWL","OF","GRUEL"], "BOWL"])
+    gs.multiword.append([["BOWL","OF","FOOD"], "BOWL"])
+
+
+    #rat
+    #cot
+    #bone
+    #floor
+    #ceiling
+    #walls
+
+#sample doorway:
     door = Pathway("DOOR")
     door.location = "ROOM 2"
     door.location2 = "ROOM 1"
