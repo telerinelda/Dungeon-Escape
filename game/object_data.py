@@ -44,7 +44,7 @@ def add_object_data(gs):
     rat.location = "NOWHERE"
     rat.can_pick_up = False
     rat.look_texts = {"default":"The rat is large and looks well-fed. You shudder to think what his diet consists of, down here. He looks at you with keen interest. He seems disappointed that you are awake. He will not approach the bowl of gruel while he senses you are conscious."}
-    rat.room_look_texts{"default":"There is a rat."}
+    rat.room_look_texts = {"default":"There is a rat."}
     rat.pick_up_texts = {"default":"The rat stays well out of your reach."}
     rat.use_texts = {"default":"You can't think of a use for this rat, and you doubt he'd agree to be picked up."}
     #rat.drop_texts
@@ -65,6 +65,21 @@ def add_object_data(gs):
     gs.multiword.append([["BED"], "COT"])
     cot.add_sublocation(preposition="UNDER",text="Under the cot",hidden=True)
     cot.add_sublocation(preposition="ON",text="On the cot",hidden=False)
+
+    bone = Thing("BONE")
+    bone.location = "CELL"
+    bone.can_pick_up = True
+    bone.sublocation = ["COT","UNDER"]
+    bone.look_texts = {"default":"You look at the creepy grey-white bone sliver.  It is thin and broken to a point at one end. Could it be... a human finger?  You shudder."}
+    bone.room_look_texts = {"default":"There is a piece of bone."}
+    bone.pick_up_texts = {"default":"You pick up the bone."}
+    bone.is_transitive = True
+    bone.use_texts = {"default":"You try but the bone doesn't accomplish what you wanted."}
+    bone.drop_texts = {"default":"You put the creepy bone down.  You feel better already.  That thing is weird."}
+    bone.go_to_texts = {"default":"You move closer to the bone sliver.  You wonder what beast ... or person ... it once belonged to."}
+    gs.object_dictionary[bone.name] = bone
+    gs.multiword.append([["BONE","SLIVER"], "BONE"])
+    gs.multiword.append([["PIECE","OF","BONE"], "BONE"])
 
     #bone
     #floor

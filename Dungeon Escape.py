@@ -75,7 +75,7 @@ def game_func(command_input):
                             sub_owner = sub[0]
                             sub_prep = sub[1]
                             sub_i = gs.object_dictionary[sub_owner].sublocation_index(sub_prep)
-                            gs.console_output += gs.object_dictionary[sub_owner].sublocation_text + ":"
+                            gs.console_output += gs.object_dictionary[sub_owner].sublocation_text[sub_i] + ":"
                             for obj in gs.object_dictionary:
                                 if gs.object_dictionary[obj].sublocation == [sub_owner,sub_prep]:
                                     gs.console_output += "\n"
@@ -123,7 +123,7 @@ def game_func(command_input):
                             sub_i = gs.object_dictionary[sub_owner].sublocation_index(sub_prep)
                             gs.object_dictionary[sub_owner].sublocation_hidden = False
                             gs.console_output += "You look "
-                            gs.console_output += gs.object_dictionary[sub_owner].sublocation_text.lower()
+                            gs.console_output += gs.object_dictionary[sub_owner].sublocation_text[sub_i].lower()
                             gs.console_output += "."
                             find_count = 0
                             for obj in gs.object_dictionary:
@@ -204,7 +204,7 @@ def game_func(command_input):
                                     gs.console_output += "You place the "
                                     gs.console_output += obj.lower()
                                     gs.console_output += " "
-                                    gs.console_output += gs.object_dictionary[sub_owner].sublocation_text.lower()
+                                    gs.console_output += gs.object_dictionary[sub_owner].sublocation_text[sub_i].lower()
                                     gs.console_output += "."
                                 else:
                                     gs.console_output += "I don't recognize where you want to put that."

@@ -40,13 +40,14 @@ class Thing:
             return False
 
     def add_sublocation(self,preposition, text, hidden):
-        self.sublocation_preposition = preposition
-        self.sublocation_text = text
-        self.sublocation_hidden = hidden
+        self.sublocation_preposition.append(preposition)
+        self.sublocation_text.append(text)
+        self.sublocation_hidden.append(hidden)
 
     def sublocation_index(self,preposition):
         for i in range(self.num_sublocations()):
-            if self.sublocation_preposition == preposition:
+            #print("i",i)
+            if self.sublocation_preposition[i] == preposition:
                 return i
         else:
             raise Exception
@@ -58,6 +59,7 @@ class Thing:
         else:
             sub_owner = gs.object_dictionary[self.sublocation[0]]
             prep = self.sublocation[1]
+            #print(self.sublocation[0],prep)
             sub_i = sub_owner.sublocation_index(prep)
             return sub_owner.sublocation_hidden
 
