@@ -81,10 +81,11 @@ def add_object_data(gs):
     gs.multiword.append([["BONE","SLIVER"], "BONE"])
     gs.multiword.append([["PIECE","OF","BONE"], "BONE"])
 
-    #bone
     #floor
     #ceiling
     #walls
+
+
 
 #sample doorway:
     door = Pathway("DOOR")
