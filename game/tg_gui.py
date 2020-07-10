@@ -51,7 +51,7 @@ def setup_gui(game_name,game_func,start_text):
     # this bit makes the Submit button get activated if you press the enter key
 
     def start_up():
-        tg.setMessage("console", "This game is powered by the Generic Text Game Engine, by Kevin Hughes\n\n"+ start_text)
+        tg.setMessage("console", "This game is powered by the Generic Text Game Engine, by Kevin Hughes\n\n***\n\n"+ start_text)
 
     tg.setStartFunction(start_up)
 

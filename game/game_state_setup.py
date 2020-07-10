@@ -3,7 +3,12 @@
 class gameState:
     def __init__(self):
         self.game_name = "Dungeon Escape"
-        self.game_opening_text = "You come to consciousness ..."
+        self.game_opening_text = "You come to consciousness, aware of your pain and hunger. The events of the past " \
+            "twenty four hours come back to you in a confused jumble. Or has it been longer? You don't know what time " \
+            "of day it is. \n\nThe ropes that hold you are strong and tight, but you can move around a little.  You open your " \
+            "eyes. In the dim light, you see that you are locked in a dark cell. You are very hungry.  Someone has put " \
+            "a small bowl of gruel on the floor nearby. In your weakened state, you must admit you long to slurp it down. "\
+            "\n\nSomewhere nearby, you hear a scurrying sound. Then a squeak. Could that be... rats?"
         self.sound_toggle = False
         self.progress = set()
         self.object_dictionary = dict()

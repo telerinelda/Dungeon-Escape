@@ -68,6 +68,8 @@ class Place(Thing):
         self.location = self.name
         self.is_location = True
         self.room_look_texts = {"default":""}
+        self.pick_up_texts = {"default": "You can't pick up the place you are in.  It has already, in a sense, picked you up."}
+        self.use_texts = {"default":"You are already using this location as a place to be, I guess."}
 
 # here's a subclass that is for pathways connecting rooms: doorways, hallways that don't need to be locations.
 class Pathway(Thing):

@@ -6,37 +6,11 @@ def add_object_data(gs):
     # ---------------------------------------------------------------------------------------------
     #  Starting Cell
     cell = Place("CELL")
+    cell.look_texts = {"default":"You look around at your cell.  The stone is damp.  The air is foul.  The ropes that hold you are attached to the wall behind you.  You lie on an old, moldy cot."}
+    cell.go_to_texts = {"default":"You reenter the cell you escaped from.  It disgusts you."}
+    gs.object_dictionary[cell.name] = cell
+    gs.multiword.append([["JAIL"],"CELL"])
 
-
-    room1 = Place("ROOM 1")
-    #the object room1 will rarely be used by that handle.  instead we call it with gs.object_dictionary("ROOM1")
-    room1.look_texts = {"default": "You look at room number 1.  It's pretty simple."}
-    #room1.room_look_texts = {"default": ""}  # Not needed for locations
-    room1.pick_up_texts = {"default": "You would like to pick up the room but it's kinda too big."}
-    room1.use_texts = {"default": "You are using the room as a room to stand in I guess."}
-    #room1.drop_texts = {"default": ""}  # This is only needed if you can put it in your inventory.
-    room1.go_to_texts = {"default": "You enter room # 1."}
-    gs.object_dictionary[room1.name] = room1
-    #next we set up some alternate names
-    gs.multiword.append([["ROOM1"],"ROOM 1"])
-    gs.multiword.append([["ROOM","1"],"ROOM 1"])
-    gs.multiword.append([["ROOM","ONE"],"ROOM 1"])
-
-    #  Sample Location 2:
-    room2 = Place("ROOM 2")
-    room2.look_texts = {"default": "You look at room number 2.  It's pretty simple."}
-    #room2.room_look_texts = {"default": ""}  # Not needed for locations
-    room2.pick_up_texts = {"default": "You would like to pick up the room but it's kinda too big."}
-    room2.use_texts = {"default": "You are using the room as a room to stand in I guess."}
-    #room2.drop_texts = {"default": ""}  # This is only needed if you can put it in your inventory.
-    room2.go_to_texts = {"default": "You enter room # 2."}
-    gs.object_dictionary[room2.name] = room2
-    gs.multiword.append([["ROOM2"],"ROOM 2"])
-    gs.multiword.append([["ROOM","2"],"ROOM 2"])
-    gs.multiword.append([["ROOM","TWO"],"ROOM 2"])
-
-    # list connections between locations here. (DNU! old way)
-    #connections = [{"ROOM 1", "ROOM 2"}]
 
     #sample doorway:
     door = Pathway("DOOR")
