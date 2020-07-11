@@ -81,6 +81,39 @@ def add_object_data(gs):
     gs.multiword.append([["BONE","SLIVER"], "BONE"])
     gs.multiword.append([["PIECE","OF","BONE"], "BONE"])
 
+    cellfloor = Thing("CELL FLOOR")
+    cellfloor.location = "CELL"
+    cellfloor.can_pick_up = False
+    cellfloor.look_texts = {"default":"The floors are jumbled stone and ancient mortar.  The cracks are caked with unimaginable filth."}
+    cellfloor.room_look_texts = {"default":""}
+    cellfloor.pick_up_texts = {"default":"Your fingers search the floor carefully but it is unyielding."}
+    cellfloor.use_texts = {"default":"You can't think of anything to do with the floor of your cell."}
+    cellfloor.drop_texts = dict()
+    cellfloor.go_to_texts = {"default":"You lean in close to the floor.  It smells of sweat and despair."}
+    gs.object_dictionary[cellfloor.name] = cellfloor
+
+    cellwall = Thing("CELL WALL")
+    cellwall.location = "CELL"
+    cellwall.can_pick_up = False
+    cellwall.look_texts = {"default":"The walls of the ancient cell are ugly and hard. In one place a former prisoner has made 22 tally marks.  You wonder how long ago they were made, and what that prisoner's fate turned out to be."}
+    cellwall.room_look_texts = {"default":""}
+    cellwall.pick_up_texts = {"default":"You can't pick up the walls."}
+    cellwall.use_texts = {"default":"You press on the walls here and there, but no secrets are revealed."}
+    cellwall.drop_texts = dict()
+    cellwall.go_to_texts = {"default":"You draw close to the cell wall, with no result."}
+    gs.object_dictionary[cellwall.name] = cellwall
+
+    cellceiling = Thing("CELL CEILING")
+    cellceiling.location = "CELL"
+    cellceiling.can_pick_up = False
+    cellceiling.look_texts = {"default":"The ceiling is low and made of brick, stones, ancient lumber, and mortar."}
+    cellceiling.room_look_texts = {"default":""}
+    cellceiling.pick_up_texts = {"default":"You can't pick up the ceiling."}
+    cellceiling.use_texts = {"default":"The ceiling is of no use to you in your present state."}
+    cellceiling.drop_texts = dict()
+    cellceiling.go_to_texts = {"default":"You can't get any closer to the ceiling."}
+    gs.object_dictionary[cellceiling.name] = cellceiling
+
     #floor
     #ceiling
     #walls

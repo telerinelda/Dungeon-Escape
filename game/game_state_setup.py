@@ -84,8 +84,16 @@ class gameState:
         return comlist
 
     def replacements(self,comlist):
+        comlist = self.subseq_replace(comlist,["ROOM"],self.player_location)
         for repl in self.multiword:
             comlist = self.subseq_replace(comlist,repl[0],repl[1])
+        comlist = self.subseq_replace(comlist,[self.player_location,"FLOOR"],self.player_location + " FLOOR")
+        comlist = self.subseq_replace(comlist,[self.player_location,"WALL"],self.player_location + " WALL")
+        comlist = self.subseq_replace(comlist,[self.player_location,"CEILING"],self.player_location + " CEILING")
+        comlist = self.subseq_replace(comlist,["FLOOR"],self.player_location + " FLOOR")
+        comlist = self.subseq_replace(comlist,["WALL"],self.player_location + " WALL")
+        comlist = self.subseq_replace(comlist,["CEILING"],self.player_location + " CEILING")
+        #print(comlist)
         return comlist
 
     def set_progress(self, progress_text):
