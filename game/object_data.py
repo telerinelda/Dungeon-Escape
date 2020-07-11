@@ -114,26 +114,23 @@ def add_object_data(gs):
     cellceiling.go_to_texts = {"default":"You can't get any closer to the ceiling."}
     gs.object_dictionary[cellceiling.name] = cellceiling
 
-    #floor
-    #ceiling
-    #walls
+    celldoor = Pathway("CELL DOOR")
+    celldoor.location = "CELL"
+    celldoor.location2 = "HALLWAY"
+    celldoor.look_texts = {"CELL":"A very strong-looking iron door is the only way out of the cell.",
+                           "HALLWAY":"The iron door that once kept you locked within is just as imposing from the outside."}
+    celldoor.room_look_texts = {"default":"There is a door."}
+    celldoor.pick_up_texts = {"default":"The ropes that bind you prevent you from approaching the door"}
+    celldoor.go_to_texts = {"default":"The ropes that bind you prevent you from approaching the door."}
+    celldoor.look_thru_texts = {"CELL":"Whether from the smallness of the cracks, or the darkness on the other side, you can see nothing through the door."}
+    gs.object_dictionary[celldoor.name] = celldoor
+    gs.pathways_dictionary[celldoor.name] = celldoor
+    gs.multiword.append([["CELL","DOOR"], "CELL DOOR"])
+
+    #hallway location,then:
+    #rat progress point & all text updates.
 
 
-
-#sample doorway:
-    door = Pathway("DOOR")
-    door.location = "ROOM 2"
-    door.location2 = "ROOM 1"
-    door.look_texts = {"ROOM 1":"You inspect the door.  It is a heavy wooden door with no keyhole. The door leads to room 2.",
-                      "ROOM 2":"You inspect the door.  It is a heavy wooden door with no keyhole. The door leads to room 1."}
-    door.room_look_texts = {"default":"There is a door."}
-    door.pick_up_texts = {"default":"Sigh.... No you can't pick up a door."}
-    door.go_to_texts = {"default":"You approach the door..."}
-    door.look_thru_texts = {"ROOM 1":"Beyond the door is room 2.  You can make out a wooden table.",
-                           "ROOM 2":"Beyond the door is room 1.  You don't see any people or large objects."}
-    #door.use_texts = {} #not needed for pathways.
-    gs.object_dictionary[door.name] = door
-    gs.pathways_dictionary[door.name] = door
 
 
     #  Sample Object: a rock you can pick up:

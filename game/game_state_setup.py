@@ -93,6 +93,8 @@ class gameState:
         comlist = self.subseq_replace(comlist,["FLOOR"],self.player_location + " FLOOR")
         comlist = self.subseq_replace(comlist,["WALL"],self.player_location + " WALL")
         comlist = self.subseq_replace(comlist,["CEILING"],self.player_location + " CEILING")
+        if self.player_location in ["CELL","HALLWAY"]:
+            comlist = self.subseq_replace(comlist,["DOOR"],"CELL DOOR")
         #print(comlist)
         return comlist
 

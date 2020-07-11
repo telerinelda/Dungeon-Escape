@@ -42,7 +42,7 @@ def game_func(command_input):
                         # the thing we're looking at is an object, not a location.
                         # if it is a pathway we modulate the description based on which location we're in
                         if gs.command_list[0] in gs.pathways_dictionary:
-                            gs.console_output += gs.pathways_dictionary[gs.command_list[0]].look_text[gs.player_location]
+                            gs.console_output += gs.pathways_dictionary[gs.command_list[0]].look_texts[gs.player_location]
                         else:
                             # here we're looking at an object that isn't a location or a pathway.
                             # the final check: is it hidden in a sublocation?
@@ -63,8 +63,9 @@ def game_func(command_input):
                         for obj in gs.object_dictionary:
                             if gs.object_dictionary[obj].location == gs.player_location and gs.object_dictionary[obj].sublocation == []:
                                 # this excludes the inventory and objects in sublocations.
-                                gs.console_output += "\n"
-                                gs.console_output += gs.object_dictionary[obj].room_look_text
+                                if len(gs.object_dictionary[obj].room_look_text) > 0:
+                                    gs.console_output += "\n"
+                                    gs.console_output += gs.object_dictionary[obj].room_look_text
                             #now we're going to build a collection of the sublocations that need to be mentioned.
                             if gs.object_dictionary[obj].location == gs.player_location and gs.object_dictionary[obj].sublocation != [] and not gs.object_dictionary[obj].is_hidden(gs):
                                 if gs.object_dictionary[obj].sublocation not in look_subs:
