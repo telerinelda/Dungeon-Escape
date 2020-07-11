@@ -31,7 +31,7 @@ class gameState:
 
         #populate the multiword dictionary with some generic things
         self.multiword.append([["DOORWAY"],"DOOR"])
-
+        self.multiword.append([["WALLS"],"WALL"])
 
 
     # this is a function that returns a boolean value if a certain object is present
